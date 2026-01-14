@@ -1,0 +1,21 @@
+{
+  "Group": "net.ledestudios",
+  "Name": "FireNeedsOxygen",
+  "Version": "0.1.0",
+  "Description": "Allows players to place torches underwater, but refuses to let them light up. Because fire still needs oxygen, even if players don't."
+,
+  "Authors": [
+    {
+      "Name": "Lede",
+      "Email": "ledestudios@ledestudios.net",
+      "Url": "https://ledestudios.net"
+    }
+  ],
+  "Website": "https://ledestudios.net",
+  "ServerVersion": "*",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "Main": "net.ledestudios.fireneedsoxygen.FireNeedsOxygenPlugin"
+}
