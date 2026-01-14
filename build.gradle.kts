@@ -6,6 +6,10 @@ plugins {
 group = "net.ledestudios"
 version = "1.0-SNAPSHOT"
 
+tasks.jar {
+    enabled = false
+}
+
 repositories {
     mavenCentral()
 }
