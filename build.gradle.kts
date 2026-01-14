@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("com.gradleup.shadow") version "9.1.0"
+    id("io.freefair.lombok") version "8.14.2"
 }
 
 group = "net.ledestudios"
