@@ -1,5 +1,5 @@
 {
-  "Group": "net.ledestudios",
+  "Group": "LedeStudios",
   "Name": "FireNeedsOxygen",
   "Version": "0.1.0",
   "Description": "Prevents underwater placement of fire-based objects due to persistent compatibility issues between fire and water.",
