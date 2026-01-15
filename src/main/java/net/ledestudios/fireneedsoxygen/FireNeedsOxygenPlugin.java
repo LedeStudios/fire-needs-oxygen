@@ -4,6 +4,7 @@ import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import lombok.Getter;
+import net.ledestudios.fireneedsoxygen.command.FireNeedsOxygenCommand;
 import net.ledestudios.fireneedsoxygen.config.Config;
 import net.ledestudios.fireneedsoxygen.config.YamlConfigurator;
 import net.ledestudios.fireneedsoxygen.handler.BlockInWaterHandleSystem;
@@ -32,6 +33,7 @@ public class FireNeedsOxygenPlugin extends JavaPlugin {
     protected void setup() {
         reloadConfig().join();
         this.getEntityStoreRegistry().registerSystem(new BlockInWaterHandleSystem(this));
+        this.getCommandRegistry().registerCommand(new FireNeedsOxygenCommand(this));
     }
 
     public CompletableFuture<Void> reloadConfig() {
