@@ -37,7 +37,7 @@ public class FireNeedsOxygenPlugin extends JavaPlugin {
     public CompletableFuture<Void> reloadConfig() {
         return configurator.load().whenComplete((unused, throwable) -> {
             if (throwable != null) {
-                getLogger().atWarning().log("Configuration load failed.", throwable.getMessage());
+                LOGGER.atWarning().log("Configuration load failed.", throwable.getMessage());
                 return;
             }
 
@@ -46,17 +46,17 @@ public class FireNeedsOxygenPlugin extends JavaPlugin {
                 Set<String> items = node.get(Config.Types.ITEMS);
                 if (items == null || items.isEmpty()) {
                     this.config = new Config(Set.of());
-                    getLogger().atInfo().log("Empty configuration.");
+                    LOGGER.atInfo().log("Empty configuration.");
                     return;
                 }
 
                 this.config = new Config(Set.copyOf(items));
             } catch (SerializationException e) {
-                getLogger().atWarning().log("Configuration load failed.", e);
+                LOGGER.atWarning().log("Configuration load failed.", e);
                 return;
             }
 
-            getLogger().atInfo().log("Configuration loaded successfully.");
+            LOGGER.atInfo().log("Configuration loaded successfully.");
         });
     }
 
