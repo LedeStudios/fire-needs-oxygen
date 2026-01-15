@@ -1,11 +1,12 @@
 package net.ledestudios.fireneedsoxygen;
 
+import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import lombok.Getter;
 import net.ledestudios.fireneedsoxygen.config.Config;
 import net.ledestudios.fireneedsoxygen.config.YamlConfigurator;
-import net.ledestudios.fireneedsoxygen.handler.BlockPlaceHandler;
+import net.ledestudios.fireneedsoxygen.handler.FireNeedsOxygenSystem;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.serialize.SerializationException;
 
@@ -14,6 +15,8 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class FireNeedsOxygenPlugin extends JavaPlugin {
+
+    public static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
     private final @Nonnull YamlConfigurator configurator;
 
@@ -28,7 +31,7 @@ public class FireNeedsOxygenPlugin extends JavaPlugin {
     @Override
     protected void setup() {
         reloadConfig().join();
-        this.getEntityStoreRegistry().registerSystem(new BlockPlaceHandler(this));
+        this.getEntityStoreRegistry().registerSystem(new FireNeedsOxygenSystem(this));
     }
 
     public CompletableFuture<Void> reloadConfig() {
