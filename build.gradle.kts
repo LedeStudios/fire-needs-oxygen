@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.ledestudios"
-version = "1.0-SNAPSHOT"
+version = "0.1.0"
 
 tasks.jar {
     enabled = false
