@@ -15,6 +15,10 @@ tasks.shadowJar {
     archiveClassifier.set("")
 }
 
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(25))
+}
+
 repositories {
     mavenCentral()
 }
