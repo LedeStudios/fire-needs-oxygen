@@ -11,6 +11,10 @@ tasks.jar {
     enabled = false
 }
 
+tasks.shadowJar {
+    archiveClassifier.set("")
+}
+
 repositories {
     mavenCentral()
 }
