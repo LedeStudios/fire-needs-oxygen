@@ -14,11 +14,11 @@ import net.ledestudios.fireneedsoxygen.FireNeedsOxygenPlugin;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class FireNeedsOxygenBlockPlaceHandleSystem extends EntityEventSystem<EntityStore, PlaceBlockEvent> {
+public class BlockInWaterHandleSystem extends EntityEventSystem<EntityStore, PlaceBlockEvent> {
 
     private final FireNeedsOxygenPlugin plugin;
 
-    public FireNeedsOxygenBlockPlaceHandleSystem(@Nonnull FireNeedsOxygenPlugin plugin) {
+    public BlockInWaterHandleSystem(@Nonnull FireNeedsOxygenPlugin plugin) {
         super(PlaceBlockEvent.class);
         this.plugin = plugin;
     }
