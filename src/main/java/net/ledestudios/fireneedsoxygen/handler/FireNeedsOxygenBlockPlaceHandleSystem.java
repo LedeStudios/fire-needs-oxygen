@@ -1,25 +1,24 @@
 package net.ledestudios.fireneedsoxygen.handler;
 
-import com.hypixel.hytale.component.Archetype;
-import com.hypixel.hytale.component.ArchetypeChunk;
-import com.hypixel.hytale.component.CommandBuffer;
-import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.component.*;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EntityEventSystem;
+import com.hypixel.hytale.math.vector.Vector3i;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.PlaceBlockEvent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import net.ledestudios.fireneedsoxygen.FireNeedsOxygenPlugin;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-//TODO: ~~System 형식으로 이름 변경할 것
-public class BlockPlaceHandler extends EntityEventSystem<EntityStore, PlaceBlockEvent> {
+public class FireNeedsOxygenBlockPlaceHandleSystem extends EntityEventSystem<EntityStore, PlaceBlockEvent> {
 
     private final FireNeedsOxygenPlugin plugin;
 
-    public BlockPlaceHandler(@Nonnull FireNeedsOxygenPlugin plugin) {
+    public FireNeedsOxygenBlockPlaceHandleSystem(@Nonnull FireNeedsOxygenPlugin plugin) {
         super(PlaceBlockEvent.class);
         this.plugin = plugin;
     }
@@ -38,8 +37,29 @@ public class BlockPlaceHandler extends EntityEventSystem<EntityStore, PlaceBlock
         }
 
         String id = item.getItemId();
-        boolean cancel = this.plugin.getConfig().items().contains(id);
-        event.setCancelled(cancel);
+        boolean match = this.plugin.getConfig().items().contains(id);
+        if (!match) {
+            return;
+        }
+
+        Ref<EntityStore> ref = archetypeChunk.getReferenceTo(index);
+        Player player = store.getComponent(ref, Player.getComponentType());
+        if (player == null) {
+            return;
+        }
+
+        World world = player.getWorld();
+        if (world == null) {
+            return;
+        }
+
+        Vector3i pos = event.getTargetBlock();
+        int fluid = world.getFluidId(pos.x, pos.y, pos.z);
+        if (fluid == 0) {
+            return;
+        }
+
+        event.setCancelled(true);
     }
 
     @Nullable

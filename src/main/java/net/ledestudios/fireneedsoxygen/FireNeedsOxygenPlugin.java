@@ -6,7 +6,7 @@ import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import lombok.Getter;
 import net.ledestudios.fireneedsoxygen.config.Config;
 import net.ledestudios.fireneedsoxygen.config.YamlConfigurator;
-import net.ledestudios.fireneedsoxygen.handler.FireNeedsOxygenSystem;
+import net.ledestudios.fireneedsoxygen.handler.FireNeedsOxygenBlockPlaceHandleSystem;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.serialize.SerializationException;
 
@@ -31,7 +31,7 @@ public class FireNeedsOxygenPlugin extends JavaPlugin {
     @Override
     protected void setup() {
         reloadConfig().join();
-        this.getEntityStoreRegistry().registerSystem(new FireNeedsOxygenSystem(this));
+        this.getEntityStoreRegistry().registerSystem(new FireNeedsOxygenBlockPlaceHandleSystem(this));
     }
 
     public CompletableFuture<Void> reloadConfig() {
